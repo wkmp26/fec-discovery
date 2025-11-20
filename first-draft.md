@@ -2,7 +2,7 @@
 
 ## Overview of Data Used
 
-As a recap, for this project, I am working with Federal Election Commission data relating to political committee expenditures in relation to candidates (supporting or opposing). In addition to this data, I used the candidate and committee summary dataset to extract metadata like candidate name/party or committee type.
+As a recap, for this project, I am working with Federal Election Commission data relating to political committee expenditures in relation to candidates (supporting or opposing). In addition to this data, I used the candidate and committee summary datasets to extract metadata like candidate name/party or committee type.
 
 ## Feature Engineering
 
@@ -32,31 +32,39 @@ An interesting, simple classifier I wanted to explore was predicting a candidate
 </td>
   </tr>
   <tr>
-    <td>Confuson Matrix</td>
-    <td><img width="200" alt="download" src="https://github.com/user-attachments/assets/303d3742-dad6-4ba8-937d-e3f8e279a956" />
+    <td>Confusion Matrix</td>
+    <td><img width="200" alt="download" src="https://github.com/user-attachments/assets/90334946-3ad7-4fb4-8cab-a9ef47b73549" />
+
 </td>
-    <td><img width="200" alt="download" src="https://github.com/user-attachments/assets/4fbd8771-3360-43d7-9cac-918e64f5890b" />
+    <td><img width="200" alt="download" src="https://github.com/user-attachments/assets/d244afb5-b290-4da3-b182-7089225f6453" />
+
 </td>
   </tr>
   <tr>
     <td>ROC Curve</td>
-    <td><img width="200" alt="download" src="https://github.com/user-attachments/assets/445320f2-8296-429b-b2c0-038dea6122cd" />
+    <td><img width="200" alt="download" src="https://github.com/user-attachments/assets/b8a24705-0f3b-4b07-a02d-9f7f59b50507" />
+
 </td>
-    <td><img width="200" alt="download" src="https://github.com/user-attachments/assets/66578b63-79e0-4422-8ffc-56f1eba91973" />
+    <td><img width="200" alt="download" src="https://github.com/user-attachments/assets/01471d2d-bc4f-4cae-958d-2531e14ef0d5" />
+
 </td>
   </tr>
   <tr>
     <td>PR Curve</td>
-    <td><img width="200" alt="download" src="https://github.com/user-attachments/assets/7bb75831-fa58-4f31-8ba6-5fab1cee7120" />
+    <td><img width="200" alt="download" src="https://github.com/user-attachments/assets/ad942b15-3b57-4b0d-85b8-0eda56c32056" />
+
 </td>
-    <td><img width="200" alt="download" src="https://github.com/user-attachments/assets/7b4c529f-2d77-45ae-b937-893870a1c710" />
+    <td><img width="200" alt="download" src="https://github.com/user-attachments/assets/3279cae9-56e8-47dc-853b-983a644f1862" />
+
 </td>
   </tr>
   <tr>
     <td>F1–Threshold</td>
-    <td><img width="200" alt="download" src="https://github.com/user-attachments/assets/ce2d06c6-98c5-481e-b536-fc8f34a4aee3" />
+    <td><img width="200" alt="download" src="https://github.com/user-attachments/assets/7b2efffc-5c6d-4ae6-8074-1024364706f1" />
+
 </td>
-    <td><img width="200" alt="download" src="https://github.com/user-attachments/assets/24a32052-ea83-4b07-828b-4e05a0b6991d" />
+    <td><img width="200" alt="download" src="https://github.com/user-attachments/assets/19c80018-d6c8-4dc2-8440-96b0c0347ed9" />
+
 </td>
   </tr>
 </table>
@@ -119,7 +127,7 @@ Increasing complexity and usefulness, I decided to pull FEC data on which candid
 
 ##### A (Better) Baseline
 
-Noting that my model was showing pretty decent metrics, I decided to make the baseline more competitive and harder to beat. Incumbents tend to win their races, so I built a model that simply said, "If they are an incumbent, then they will win." Surprisingly, this model performed on par with, if not better than, my campaign finance model. Arguably, this baseline has a bit of an advantage given that it has explicit and helpful candidate data, whereas the finance model simply has contribution. However, I was interested in whether the model was able to pick up on this signal, leading me to build another classifier.   
+Noting that my model was showing pretty decent metrics, I decided to make the baseline more competitive and harder to beat. Incumbents tend to win their races, so I built a model that simply said, "If they are an incumbent, then they will win." Surprisingly, this model performed on par with, if not better than, my campaign finance model. Arguably, this baseline has a bit of an advantage given that it has explicit and helpful candidate data, whereas the finance model simply has contributions. However, I was interested in whether the model was able to pick up on this signal, leading me to build another classifier.   
 
 #### Incumbent Classifier
 
@@ -177,11 +185,11 @@ As can be seen, the incumbent classifier based purely on committee expenditures 
 
 ## Error and Bias
 
-While much of my EDA and data cleaning prepped the data for errors, there could be other nuances in filing strategies or other missing pieces of context. Another source of error could occur as I work more with latent features; the models become less interpretable, and back-tracing decisions can be difficult. For example, there was a moment where I realized that I forgot to filter by support, being a candidate's best supporters with their biggest opponents, confusing mt results. One foreseeable area of bias is that candidates who receive more and committees that spend more are more represented in this transaction-based dataset.
+While much of my EDA and data cleaning prepped the data for errors, there could be other nuances in filing strategies or other missing pieces of context. Another source of error could occur as I work more with latent features; the models become less interpretable, and back-tracing decisions can be difficult. For example, there was a moment where I realized that I forgot to filter by support, mixing a candidate's best supporters with their biggest opponents, confusing my results. One foreseeable area of bias is that candidates who receive more and committees that spend more are more represented in this transaction-based dataset.
 
 ## Clustering
 
-An initial area I wanted to explore with this data is clustering; however, this is proving difficult. When I initially latent reduced the dimensions and plotted by various features, some clusters seemed present; however, after multiple attempts, I have still been able to form remotely distributed clusters. Findings from this area lead me to the hybrid model described below.
+An initial area I wanted to explore with this data is clustering; however, this is proving difficult. When I initially latent reduced the dimensions and plotted by various features, some clusters seemed present; however, after multiple attempts, I have still been unable to form remotely distributed clusters. Findings from this area lead me to the hybrid model described below.
 
 ### Clustering by Committee 
 
@@ -225,9 +233,8 @@ An initial area I wanted to explore with this data is clustering; however, this 
     <td><img width="689" height="525" alt="download" src="https://github.com/user-attachments/assets/e7fd17fe-b5f7-4603-84c5-64b2fc833a6b" />
 
 </td>
-    <td><img width="689" height="525" alt="download" src="https://github.com/user-attachments/assets/e6b86ef2-2507-4d54-9dea-10cb5a89f53c" />
-
-
+<td>
+    <img width="689" height="525" alt="download" src="https://github.com/user-attachments/assets/ba7b694b-8946-4d0b-8fc0-e42f24a7fcd8" />
 </td>
   </tr>
 </table>
@@ -235,11 +242,11 @@ An initial area I wanted to explore with this data is clustering; however, this 
 
 ## A Hybrid Approach
 
-These efforts have allowed me to get to know this dataset and ultimately understand what it is good for. Ultimately, I was pursuing the goal of using this data to create a semi-novel and interesting insight. Given everything I learned and the question I still have about money in politics, I decided on the approach below.
+These efforts have allowed me to get to know this dataset and ultimately understand what it is good for. Ultimately, I was pursuing the goal of using this data to create a semi-novel and interesting insight. Given everything I learned and the questions I still have about money in politics, I decided on the approach below.
 
 ### Back to Neighbors
 
-As mentioned above, I created two interaction matrices, one where candidates were the index and the other where committees were the index. The values correspond to either the amount of total contribution that the committee made up for a candidate, or what percentage of its total expenditures were spent on that one candidate. I want to produce an interpretable way to relate candidates and committees to each other based on this data. Thus, I plan to reduce these sparse matrices to latent features using truncated SVD and, from there, use K-nearest neighbors to find what candidates/committees are related to each other. Where I take this a step further is that I plan to develop a function where 'fake' committees and candidates can be made based on the values that would be found in their hypothetical interaction matrix. For example, a candidate 100% bankrolled by Walmart ot a committee that only supports Representative Alexandria Ocasio-Cortez. With these 'dummy' neighbors, I can see what actual candidates are close to them in my feature space, communicating a very interesting and unique insight about this candidate/committee. 
+As mentioned above, I created two interaction matrices, one where candidates were the index and the other where committees were the index. The values correspond to either the amount of total contribution that the committee made up for a candidate, or what percentage of its total expenditures were spent on that one candidate. I want to produce an interpretable way to relate candidates and committees to each other based on this data. Thus, I plan to reduce these sparse matrices to latent features using truncated SVD and, from there, use K-nearest neighbors to find what candidates/committees are related to each other. Where I take this a step further is that I plan to develop a function where 'fake' committees and candidates can be made based on the values that would be found in their hypothetical interaction matrix row. For example, a candidate 100% bankrolled by Walmart or a committee that only supports Representative Alexandria Ocasio-Cortez. With these 'dummy' neighbors, I can see what actual candidates/committees are close to them in my feature space, communicating a very interesting and unique insight about those candidates/committees. 
 
 *Note: This approach could also be used to partially identify the meaning of latent features
 
