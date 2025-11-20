@@ -61,6 +61,7 @@ An interesting, simple classifier I wanted to explore was predicting a candidate
   </tr>
 </table>
 
+These metrics show that overall party classification is achievable, but there is still some muddiness to the accuracy. An ROC-AUC of 0.95 and the 0.9 F1 score indicate a decent model; however, the model appears to be better at classifying False values over True ones. One area of investigation here would be if there are 'fenceriding' committees that donate to both major parties in a race.
 
 ##### Base Line Used
 
@@ -121,6 +122,58 @@ Increasing complexity and usefulness, I decided to pull FEC data on which candid
 Noting that my model was showing pretty decent metrics, I decided to make the baseline more competitive and harder to beat. Incumbents tend to win their races, so I built a model that simply said, "If they are an incumbent, then they will win." Surprisingly, this model performed on par with, if not better than, my campaign finance model. Arguably, this baseline has a bit of an advantage given that it has explicit and helpful candidate data, whereas the finance model simply has contribution. However, I was interested in whether the model was able to pick up on this signal, leading me to build another classifier.   
 
 #### Incumbent Classifier
+
+<table>
+  <tr>
+    <td></td>
+    <td>Random</td>
+    <td>Random Forest</td>
+  </tr>
+  <tr>
+    <td>Classification Report</td>
+    <td> <img width="638" height="284" alt="image" src="https://github.com/user-attachments/assets/ec566527-1f2c-4760-873e-8b1cdc361230" />
+
+</td>
+    <td><img width="634" height="292" alt="image" src="https://github.com/user-attachments/assets/277e8b4d-eea7-4065-9ec0-a6d1fb28a17b" />
+</td>
+  </tr>
+  <tr>
+    <td>Confusion Matrix</td>
+    <td><img width="507" height="453" alt="download" src="https://github.com/user-attachments/assets/181562c5-0be7-435f-8f2d-5c98c95ae107" />
+</td>
+    <td><img width="507" height="453" alt="download" src="https://github.com/user-attachments/assets/6a592ea6-63dc-4c24-824e-5e61b4e7aee9" />
+</td>
+  </tr>
+  <tr>
+    <td>ROC Curve</td>
+    <td><img width="567" height="453" alt="download" src="https://github.com/user-attachments/assets/f17daea6-e9d2-417c-b35b-2048f867df54" />
+</td>
+    <td><img width="567" height="453" alt="download" src="https://github.com/user-attachments/assets/26383a9a-2fad-47d7-93c9-b5b4a92f0bd3" />
+</td>
+  </tr>
+  <tr>
+    <td>PR Curve</td>
+    <td><img width="567" height="453" alt="download" src="https://github.com/user-attachments/assets/51b2ae18-3843-49e6-a4ed-dd0eceb6df6a" />
+</td>
+    <td><img width="567" height="453" alt="download" src="https://github.com/user-attachments/assets/aebaa522-2ce6-4804-b5a4-bc14e2d2ebfb" />
+</td>
+  </tr>
+  <tr>
+    <td>F1–Threshold</td>
+    <td><img width="576" height="453" alt="download" src="https://github.com/user-attachments/assets/507cb38b-c373-4d3c-a155-e71442ac248d" />
+</td>
+    <td><img width="567" height="453" alt="download" src="https://github.com/user-attachments/assets/f385d266-edbd-46e5-8142-3dcd2946215f" />
+</td>
+  </tr>
+</table>
+
+##### Random Binomial Baseline 
+
+For my baseline, given the uneven distribution of incumbents, I randomly sampled the predictions using a Bernoulli distribution, making this baseline slightly more robust
+
+##### Incumbent Conclusion
+
+As can be seen, the incumbent classifier based purely on committee expenditures performs impressively well, with a 0.98 ROC-AUC, an f1 of 0.94, and an overall test accuracy of 93%. This is significantly better than the results of a random binomial baseline. From here, we can see that the winner model was likely just figuring out that incumbents win and then building a form of this model. The interesting finding here is that this is purely from contributions, so diving into these models and making them more interpretable to find the indicators of incubancy could reveal some important insights for campaign finance data.
 
 ## Clustering
 
