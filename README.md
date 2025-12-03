@@ -14,6 +14,17 @@ Some cleaning was also required for the data, such as removing duplicate transac
 
 Finally, as a lead-in to the analysis of this project, this data was transformed into an interaction matrix of the aggregate supportive contributions between a candidate and a committee, where transposing this matrix will flip which value is the index. Finally, this matrix can be normalized by the sum of the row (i.e., the value as a percentage of the total money a candidate received or the total money a committee contributed in a cycle. 
 
-## Alignment (Nearest Neighbors Tools)
+## Alignment Tool (Nearest Neighbors Tools)
+
+A key purpose of this project was to apply machine learn techniques to this dataset to extract meaningful insights about candidates and political committees. Matrix factorization was applied to the interaction matrices created to reduce the large number of columns to a smaller number of latent features. An issue here arises, however, that these latent features are not interpretable in a meaningful way, making analysis difficult. This is where the alignment tool functions come in (`build_persona`,`find_neighbors_cand`,`find_neighbors_comm`). Using the `build_persona` function, a latent feature vector is constructed from a hypothetical candidate in the interaction matrix, using a dictionary of committee 'contribution' or 'alignment score'. For example, a hypothetical candidate vector could be constructed where they are maximally aligned with Chevron's PAC (CMTE_ID: C00035006) and no other committees. This latent vector is then used in conjunction with the other two functions to produce the nearest neighbors for this vector in the latent space, ultimately producing the candidates or committees most similar to the hypothetical.
+
+### Analysis
+
+The key value of the alignment tool is that it makes the latent feature space constructed from the interaction matrix navigable, where a user is able to use a hypothetical latent vector to find patterns and trends based on campaign contributions by committees to candidates. 
+
+One area where this analysis is especially useful is identifying potential conflicts of interest from contribution patterns. For example, if an elected representative serving on the House committee on education and workforce
+The House Committee on Small Business is found to be a neighbor of a hypothetical candidate who is exclusively aligned with a retail store, which is a reason for concern and offers a deeper insight than simply looking at that candidate's donors.
 
 ## Classifiers
+
+
