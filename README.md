@@ -27,4 +27,14 @@ The House Committee on Small Business is found to be a neighbor of a hypothetica
 
 ## Classifiers
 
+In addition to the alignment tool above, the latent reduced candidate-committee interaction matrix can be used to train a classifier for different candidates (or committee, though this was not explored) traits. The following three classifiers were built, with their results described below.
+
+* insert table here *
+
+*All the models above were built using a Random Forest Classifer
+
+All three of these classifiers are notably highly performant and warrant potentially additional analysis for their result. For example, examining the misclassification in the Republican classifier or digging into the results to understand what features the model is learning to classify incumbents so effectively. 
+
+
+
 
